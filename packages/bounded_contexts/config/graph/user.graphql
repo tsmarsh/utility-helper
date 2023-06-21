@@ -1,0 +1,12 @@
+type User {
+    objectId: String
+    firstName: String
+    lastName: String
+    displayName: String
+    email: String
+    notificationEmail: String
+}
+
+type Query {
+    getById(id: String): User
+}
