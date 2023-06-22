@@ -12,7 +12,7 @@ COPY package.json ./
 RUN yarn install
 
 # Copy the rest of the application code to the working directory
-COPY config/*.conf ./config
+COPY config/*.conf ./config/
 COPY config/graph ./config/graph
 COPY config/json ./config/json
 COPY index.js ./
