@@ -10,6 +10,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@gridql/server": "^2.2.0"
+    "@gridql/server": "^2.2.1"
   }
 }
