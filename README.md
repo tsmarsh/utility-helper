@@ -18,7 +18,7 @@ Hopefully you will see around 15 'forms' arranged into roughly 30 microservices 
    2. [x] kubernetes start
 4. [x] Run `node index` and have the application run against compose
 5. [x] Run `docker run -t -v "$(pwd)/docker_environment:/app/config/environment" -p 3000:3000 <tag>` and have the image run against compose
-6. [ ] Query the application [http://localhost:3030](http://localhost:3030) and be presented with a screen that describes what to do next
+6. [x] Query the application [http://localhost:3030](http://localhost:3030) and be presented with a screen that describes what to do next
 7. [ ] run 'make performance' and get a sense of local performance
 
 As you can see most of that is work that has yet to happen. Leave me alone.
