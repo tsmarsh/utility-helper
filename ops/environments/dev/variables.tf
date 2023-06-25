@@ -8,3 +8,10 @@ variable "private_key" {
 variable "project_id" {
   default = ""
 }
+
+variable "confluent_cloud_api_key" {
+  default = ""
+}
+variable "confluent_cloud_api_secret" {
+  default = ""
+}
