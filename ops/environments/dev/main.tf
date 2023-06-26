@@ -11,3 +11,9 @@ module "kafka_cluster" {
   confluent_cloud_api_key = var.confluent_cloud_api_key
   confluent_cloud_api_secret = var.confluent_cloud_api_secret
 }
+
+#module "kubernetes_cluster" {
+#  source = "../../modules/gcp"
+#  k8s_initial_node = 1
+#  key_json_path = var.key_json_path
+#}
