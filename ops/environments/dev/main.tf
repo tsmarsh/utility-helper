@@ -1,9 +1,9 @@
-#terraform {
-#  backend "gcs" {
-#    bucket = "utility-helper-state-dev"
-#    prefix = "terraform/state"
-#  }
-#}
+terraform {
+  backend "gcs" {
+    bucket = "utility-helper-state-dev"
+    prefix = "terraform/state"
+  }
+}
 
 
 module "mongo_cluster" {
