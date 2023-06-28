@@ -28,6 +28,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: ./packages/mongo-event-builder
+          context: ./packages/bounded_contexts
           push: true
           tags: ${{ secrets.DOCKERHUB_USER }}/utilityapi:latest
