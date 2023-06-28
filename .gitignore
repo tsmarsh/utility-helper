@@ -4,3 +4,4 @@ terraform.tfvars
 *.lock.hcl
 *.tfstate
 *.tfstate.backup
+.DS_Store
