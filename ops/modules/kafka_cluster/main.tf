@@ -26,6 +26,7 @@ resource "confluent_kafka_cluster" "basic" {
   availability = "SINGLE_ZONE"
   cloud        = "GCP"
   region       = "us-central1"
+
   basic {}
 
   environment {
@@ -33,9 +34,10 @@ resource "confluent_kafka_cluster" "basic" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
+
 
 resource "confluent_service_account" "app-manager" {
   display_name = "app-manager"

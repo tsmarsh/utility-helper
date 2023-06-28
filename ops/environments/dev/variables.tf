@@ -23,3 +23,7 @@ variable "key_json_path" {
 variable "region" {
   default = "us-central1"
 }
+
+output "mongo_connection" {
+  value = module.mongo_cluster.mongo_connection
+}

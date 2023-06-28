@@ -26,3 +26,7 @@ resource "mongodbatlas_cluster" "dev-cluster" {
   provider_region_name        = "CENTRAL_US"
   cluster_type = "REPLICASET"
 }
+
+output "mongo_connection" {
+  value = mongodbatlas_cluster.dev-cluster.connection_strings[0]
+}
