@@ -19,3 +19,7 @@ variable "confluent_cloud_api_secret" {
 variable "key_json_path" {
   default = ""
 }
+
+variable "region" {
+  default = "us-central1"
+}
