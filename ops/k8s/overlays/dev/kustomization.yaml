@@ -2,6 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../base
+
+configMapGenerator:
+  - name: env-conf
+    files:
+      - env.conf
+
 patchesStrategicMerge:
   - |-
     apiVersion: apps/v1
@@ -14,4 +20,11 @@ patchesStrategicMerge:
         spec:
           containers:
             - name: utilityapi
-              image: tsmarsh/utilityapi:dev
+              volumeMounts:
+              - mountPath: /app/config/environment
+                name: environment
+              env: ${{ env.MONGO_CONNECTION_STRING }}
+          volumes:
+          - name: environment
+            configMap: 
+              name: env-conf
