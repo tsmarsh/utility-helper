@@ -34,4 +34,4 @@ jobs:
           context: ./packages/bounded_contexts
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USER }}/utilityapi:${GITHUB_RUN_ID}
+          tags: ${{ secrets.DOCKERHUB_USER }}/utilityapi:${{ github.run_id }}
