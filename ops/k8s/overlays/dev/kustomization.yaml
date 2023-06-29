@@ -20,6 +20,7 @@ patchesStrategicMerge:
         spec:
           containers:
             - name: utilityapi
+              image: tsmarsh/utilityapi:5415561603
               volumeMounts:
               - mountPath: /app/config/environment
                 name: environment
