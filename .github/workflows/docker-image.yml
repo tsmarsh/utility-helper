@@ -27,6 +27,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB }}
+      - name: Set outputs
+        id: vars
+        run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $SHORT_SHA
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
@@ -34,4 +37,4 @@ jobs:
           context: ./packages/bounded_contexts
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USER }}/utilityapi:latest
+          tags: ${{ secrets.DOCKERHUB_USER }}/utilityapi:${ SHORT_SHA }
