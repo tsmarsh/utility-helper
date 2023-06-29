@@ -4,6 +4,8 @@ FROM node:20-alpine
 WORKDIR /app
 
 RUN mkdir -p config
+RUN mkdir -p views
+
 VOLUME config/environment
 
 COPY package.json ./
@@ -15,6 +17,7 @@ RUN yarn install
 COPY config/*.conf ./config/
 COPY config/graph ./config/graph
 COPY config/json ./config/json
+COPY views ./views
 COPY index.js ./
 
 # Expose the port that the application listens on
