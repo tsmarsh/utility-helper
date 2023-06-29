@@ -23,7 +23,12 @@ patchesStrategicMerge:
               volumeMounts:
               - mountPath: /app/config/environment
                 name: environment
-              env: ${{ env.MONGO_CONNECTION_STRING }}
+              env:
+              - name: MONGO_CONNECTION_STRING
+                valueFrom:
+                  secretKeyRef:
+                    name: mongo-connection-string
+                    key: MONGO_CONNECTION_STRING
           volumes:
           - name: environment
             configMap: 
