@@ -29,6 +29,7 @@
     }
   },
   "required": [
+    "object_id",
     "firstName",
     "lastName",
     "email"
