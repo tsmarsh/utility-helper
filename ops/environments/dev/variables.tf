@@ -24,6 +24,21 @@ variable "region" {
   default = "us-central1"
 }
 
+variable "mongo_cluster_name" {
+  default = ""
+}
+
+variable "mongo_db_name" {
+  default = ""
+}
+
+variable "mongo_user" {
+  default = ""
+}
+variable "mongo_password" {
+  default = ""
+}
+
 output "mongo_connection" {
   value = module.mongo_cluster.mongo_connection
 }
