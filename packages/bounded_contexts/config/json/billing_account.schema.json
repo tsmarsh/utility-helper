@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "id"
+    },
+    "accountNumber": {
+      "type": "string",
+      "faker": "finance.account"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "regionalFuelType": {
+      "type": "string",
+      "enum": [
+        "ELECTRIC",
+        "GAS"
+      ]
+    }
+  },
+  "required": ["accountNumber", "status", "regionalFuelType"]
+}

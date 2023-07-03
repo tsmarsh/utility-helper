@@ -1,0 +1,15 @@
+enum FuelType{
+    GAS,
+    ELECTRIC
+}
+
+type BillingAccount {
+    id: String
+    accountNumber: String
+    status: String
+    regionalFuelType: FuelType
+}
+
+type Query {
+    getById(id: String): BillingAccount
+}
