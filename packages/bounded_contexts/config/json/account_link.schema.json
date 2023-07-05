@@ -20,6 +20,6 @@
   },
   "required": [
     "user",
-    "account"
+    "billing_account_id"
   ]
 }
