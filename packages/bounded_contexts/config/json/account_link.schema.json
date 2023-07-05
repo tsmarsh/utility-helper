@@ -1,7 +1,7 @@
 {
   "type": "object",
   "properties": {
-    "id": {
+    "_id": {
       "type": "string",
       "format": "id"
     },
@@ -19,7 +19,7 @@
     }
   },
   "required": [
-    "user",
+    "user_id",
     "billing_account_id"
   ]
 }
