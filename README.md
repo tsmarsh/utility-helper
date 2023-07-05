@@ -20,15 +20,19 @@ Hopefully you will see around 15 'forms' arranged into roughly 30 microservices 
 4. [x] Run `node index` and have the application run against compose
 5. [x] Run `docker run -t -v "$(pwd)/docker_environment:/app/config/environment" -p 3000:3000 <tag>` and have the image run against compose
 6. [x] Query the application [http://localhost:3030](http://localhost:3030) and be presented with a screen that describes what to do next
-7. [ ] run 'make performance' and get a sense of local performance
+7. [x] Run the jmeter tests and see whats up
 
 As you can see most of that is work that has yet to happen. Leave me alone.
 
 ### Releasing
 
-1. [ ] The image created during the developer workflow must be releasable
+1. [x] The image created during the developer workflow must be releasable
    1. that is, it should be identical to the image created by the pipeline.
 2. [ ] There will be a github action that releases the app into GCP
-3. [ ] GCP itself will probably be configured in a different repo?!
-4. [ ] There will be a performance suite that runs in the cloud against a 'real' environment.
+3. [X] Terraform configuration
+   * [x] Terraform Remote configured (GCP)
+   * [x] Atlas
+   * [x] Confluent Cloud
+   * [x] GKP
+4. [x] There will be a performance suite that runs in the cloud against a 'real' environment.
 
