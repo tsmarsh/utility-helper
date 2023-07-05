@@ -20,7 +20,7 @@ patches:
         spec:
          containers:
            - name: utilityapi
-             image: tsmarsh/utilityapi:5448407502
+             image: tsmarsh/utilityapi:5463950097
              volumeMounts:
              - mountPath: /app/config/environment
                name: environment
