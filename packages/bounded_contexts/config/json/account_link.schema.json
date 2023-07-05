@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "id"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "id"
+    },
+    "billing_account_id": {
+      "type": "string",
+      "format": "id"
+    },
+    "nickname": {
+      "type": "string",
+      "faker": "animal.cetacean"
+    }
+  },
+  "required": [
+    "user",
+    "account"
+  ]
+}

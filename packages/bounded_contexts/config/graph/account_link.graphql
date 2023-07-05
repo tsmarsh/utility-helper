@@ -17,12 +17,12 @@ type User {
     displayName: String
     email: String
     notificationEmail: String
-    accounts: [AccountLink]
 }
 
 type AccountLink {
     id: String
     billingAccount: BillingAccount
+    user: User
     nickname: String
 }
 

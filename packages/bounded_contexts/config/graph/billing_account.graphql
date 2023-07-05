@@ -8,8 +8,27 @@ type BillingAccount {
     accountNumber: String
     status: String
     regionalFuelType: FuelType
+    users: [AccountLink]
+}
+
+type User {
+    objectId: String
+    firstName: String
+    lastName: String
+    displayName: String
+    email: String
+    notificationEmail: String
+}
+
+type AccountLink {
+    id: String
+    billingAccount: BillingAccount
+    user: User
+    nickname: String
 }
 
 type Query {
-    getById(id: String): BillingAccount
+    getByAccount(id: String): [AccountLink]
+    getByUser(id: String): [AccountLink]
+    getById(id: String): AccountLink
 }

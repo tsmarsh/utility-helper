@@ -24,7 +24,7 @@ patches:
              volumeMounts:
              - mountPath: /app/config/environment
                name: environment
-
+  
              env:
                 - name: MONGO_CONNECTION_STRING
                   valueFrom:
