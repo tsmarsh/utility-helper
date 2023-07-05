@@ -163,7 +163,7 @@
           <hashTree/>
           <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Graph Calls">
             <boolProp name="LoopController.continue_forever">true</boolProp>
-            <stringProp name="LoopController.loops">10</stringProp>
+            <stringProp name="LoopController.loops">3</stringProp>
           </LoopController>
           <hashTree>
             <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="User GraphQL">
@@ -186,6 +186,38 @@
 		objectId
     		firstName
     		lastName
+	}
+}</stringProp>
+              <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Complex User GraphQL">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;{\n\tgetById(id: \&quot;${USER_ID}\&quot;){\n\t\tobjectId\n    \t\tfirstName\n    \t\tlastName\n    \t\taccounts {\n    \t\t\tbillingAccount {\n    \t\t\t\taccountNumber\n    \t\t\t\tstatus\n    \t\t\t}\n    \t\t}\n\t}\n}&quot;}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${host}</stringProp>
+              <stringProp name="HTTPSampler.path">/user/graph</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+              <stringProp name="GraphQLHTTPSampler.query">{
+	getById(id: &quot;${USER_ID}&quot;){
+		objectId
+    		firstName
+    		lastName
+    		accounts {
+    			billingAccount {
+    				accountNumber
+    				status
+    			}
+    		}
 	}
 }</stringProp>
               <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
