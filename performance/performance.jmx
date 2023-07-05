@@ -140,57 +140,63 @@
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="User GraphQL">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="" elementType="HTTPArgument">
-                  <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;{\n\tgetById(id: \&quot;${USER_ID}\&quot;){\n\t\tobjectId\n    \t\tfirstName\n    \t\tlastName\n\t}\n}&quot;}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.path">/user/graph</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
-            <stringProp name="GraphQLHTTPSampler.query">{
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Graph Calls">
+            <boolProp name="LoopController.continue_forever">true</boolProp>
+            <stringProp name="LoopController.loops">10</stringProp>
+          </LoopController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="User GraphQL">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;{\n\tgetById(id: \&quot;${USER_ID}\&quot;){\n\t\tobjectId\n    \t\tfirstName\n    \t\tlastName\n\t}\n}&quot;}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${host}</stringProp>
+              <stringProp name="HTTPSampler.path">/user/graph</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+              <stringProp name="GraphQLHTTPSampler.query">{
 	getById(id: &quot;${USER_ID}&quot;){
 		objectId
     		firstName
     		lastName
 	}
 }</stringProp>
-            <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
-            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          </HTTPSamplerProxy>
-          <hashTree/>
-          <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Billing GraphQL">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="" elementType="HTTPArgument">
-                  <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;{\n\tgetById(id: \&quot;${BILLING_ID}\&quot;){\n\t\taccountNumber\n    \t\tstatus\n\t}\n}&quot;}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain">dev.poundit.co.uk</stringProp>
-            <stringProp name="HTTPSampler.path">/billing_account/graph</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
-            <stringProp name="GraphQLHTTPSampler.query">{
+              <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Billing GraphQL">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;{\n\tgetById(id: \&quot;${BILLING_ID}\&quot;){\n\t\taccountNumber\n    \t\tstatus\n\t}\n}&quot;}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">dev.poundit.co.uk</stringProp>
+              <stringProp name="HTTPSampler.path">/billing_account/graph</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+              <stringProp name="GraphQLHTTPSampler.query">{
 	getById(id: &quot;${BILLING_ID}&quot;){
 		accountNumber
     		status
 	}
 }</stringProp>
-            <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
-            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          </HTTPSamplerProxy>
-          <hashTree/>
+              <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+          </hashTree>
         </hashTree>
       </hashTree>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">

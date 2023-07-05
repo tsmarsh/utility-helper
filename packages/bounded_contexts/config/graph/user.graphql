@@ -27,7 +27,5 @@ type AccountLink {
 }
 
 type Query {
-    getByAccount(id: String): [AccountLink]
-    getByUser(id: String): [AccountLink]
-    getById(id: String): AccountLink
+    getById(id: String): User
 }
