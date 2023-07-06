@@ -4,6 +4,7 @@ const {OpenAPIClientAxios} = require("openapi-client-axios");
 const {builderFactory} = require("@gridql/payload-generator")
 const assert = require("assert");
 const {MongoMemoryServer} = require("mongodb-memory-server");
+const {callSubgraph} = require("@gridql/server/lib/callgraph");
 
 
 let mongod;
@@ -13,6 +14,8 @@ let config;
 
 let user_id;
 let billing_account_id;
+let user;
+let billing_account;
 
 before(async function (){
     this.timeout(10000);
@@ -45,7 +48,7 @@ describe("Linking an account to a user", function(){
     it("should create a user", async () =>{
 
         let user_factory = builderFactory(config.restlettes[0].schema)
-        let user = user_factory()
+        user = user_factory()
 
         const result = await swagger_clients["/user/api"].create(null, user);
 
@@ -59,7 +62,7 @@ describe("Linking an account to a user", function(){
     it("should create a billing account", async () =>{
 
         let ba_factory = builderFactory(config.restlettes[1].schema)
-        let billing_account = ba_factory()
+        billing_account = ba_factory()
 
         const result = await swagger_clients["/billing_account/api"].create(null, billing_account);
 
@@ -81,8 +84,24 @@ describe("Linking an account to a user", function(){
         assert.equal(result.status, 200);
         assert.equal(result.data.user_id, account_link.user_id);
         assert(result.data._id !== undefined);
+    })
 
-        user_id = result.data._id;
+    it("should query the graph", async () => {
+        const query = `{
+         getById(id: "${user_id}") {
+               firstName
+               accounts {
+                billingAccount{
+                    accountNumber
+                }
+               }
+            }
+        }`;
+
+        const json = await callSubgraph("http://localhost:3000/user/graph", query, "getById");
+
+        assert.equal(json.firstName, user.firstName)
+        assert.equal(json.accounts[0].billingAccount.accountNumber, billing_account.accountNumber)
     })
 });
 
