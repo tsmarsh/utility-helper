@@ -86,7 +86,7 @@ describe("Linking an account to a user", function(){
         assert(result.data._id !== undefined);
     })
 
-    it("should query the graph", async () => {
+    it("should query the user graph", async () => {
         const query = `{
          getById(id: "${user_id}") {
                firstName
@@ -102,6 +102,24 @@ describe("Linking an account to a user", function(){
 
         assert.equal(json.firstName, user.firstName)
         assert.equal(json.accounts[0].billingAccount.accountNumber, billing_account.accountNumber)
+    })
+
+    it("should query the billing graph", async () => {
+        const query = `{
+         getById(id: "${billing_account_id}") {
+               accountNumber
+               users {
+                user{
+                    firstName
+                }
+               }
+            }
+        }`;
+
+        const json = await callSubgraph("http://localhost:3000/billing_account/graph", query, "getById");
+
+        assert.equal(json.users[0].user.firstName, user.firstName)
+        assert.equal(json.accountNumber, billing_account.accountNumber)
     })
 });
 
