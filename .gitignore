@@ -7,3 +7,6 @@ terraform.tfvars
 .DS_Store
 kubeconfig
 *.log
+.nyc_output/
+coverage/
+coverage.json
