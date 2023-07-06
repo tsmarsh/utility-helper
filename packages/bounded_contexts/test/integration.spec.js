@@ -12,6 +12,7 @@ let swagger_clients = {};
 let config;
 
 let user_id;
+let billing_account_id;
 
 before(async function (){
     this.timeout(10000);
@@ -66,8 +67,22 @@ describe("Linking an account to a user", function(){
         assert.equal(result.data.accountNumber, billing_account.accountNumber);
         assert(result.data._id !== undefined);
 
-        user_id = result.data._id;
+        billing_account_id = result.data._id;
     })
 
+    it("should create an account link", async () =>{
+
+        let account_link = {
+            user_id, billing_account_id
+        }
+
+        const result = await swagger_clients["/account_link/api"].create(null, account_link);
+
+        assert.equal(result.status, 200);
+        assert.equal(result.data.user_id, account_link.user_id);
+        assert(result.data._id !== undefined);
+
+        user_id = result.data._id;
+    })
 });
 
