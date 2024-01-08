@@ -20,7 +20,7 @@ module "containers" {
   depends_on = [module.infra, module.database]
   source = "../../modules/azure_container"
   connection_string = module.database.connection_string
-  image = "tsmarsh/utilityapi:0.0.2"
+  image = "tsmarsh/utilityapi:7442158906"
   resource_group = module.infra.resource_group
   security_group = module.infra.security_group
   location = module.infra.location
