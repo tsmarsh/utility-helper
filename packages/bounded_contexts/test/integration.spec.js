@@ -1,10 +1,10 @@
-const {init, start} = require("@gridql/server");
+const {build_app, parse} = require("@gridql/server");
 const {swagger} = require("@gridql/server/lib/swagger");
 const {OpenAPIClientAxios} = require("openapi-client-axios");
 const {builderFactory} = require("@gridql/payload-generator")
 const assert = require("assert");
 const {MongoMemoryServer} = require("mongodb-memory-server");
-const {callSubgraph} = require("@gridql/server/lib/callgraph");
+const {callSubgraph} = require("@gridql/server/lib/graph/callgraph");
 
 
 let mongod;
@@ -26,14 +26,10 @@ before(async function (){
 
     let configFile = __dirname + "/../config/config.conf";
 
-    config = await init(configFile);
+    config = await parse(configFile);
+    let app = await build_app(config);
 
-    server = await start(
-        config.url,
-        config.port,
-        config.graphlettes,
-        config.restlettes
-    );
+    server = app.listen(config.port)
 
     for(let restlette of config.restlettes){
         let swaggerdoc = swagger(restlette.path, restlette.schema, config.url)
@@ -54,9 +50,8 @@ describe("Linking an account to a user", function(){
 
         assert.equal(result.status, 200);
         assert.equal(result.data.firstName, user.firstName);
-        assert(result.data._id !== undefined);
 
-        user_id = result.data._id;
+        user_id = result.request.path.slice(-36);
     })
 
     it("should create a billing account", async () =>{
@@ -68,9 +63,8 @@ describe("Linking an account to a user", function(){
 
         assert.equal(result.status, 200);
         assert.equal(result.data.accountNumber, billing_account.accountNumber);
-        assert(result.data._id !== undefined);
 
-        billing_account_id = result.data._id;
+        billing_account_id = result.request.path.slice(-36);
     })
 
     it("should create an account link", async () =>{
@@ -83,7 +77,6 @@ describe("Linking an account to a user", function(){
 
         assert.equal(result.status, 200);
         assert.equal(result.data.user_id, account_link.user_id);
-        assert(result.data._id !== undefined);
     })
 
     it("should query the user graph", async () => {

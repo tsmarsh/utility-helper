@@ -27,5 +27,5 @@ type AccountLink {
 }
 
 type Query {
-    getById(id: String): User
+    getById(id: String!, at: Float): User
 }

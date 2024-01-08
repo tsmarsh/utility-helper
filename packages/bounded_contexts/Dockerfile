@@ -1,27 +1,3 @@
-# Use the official Node.js image as the base
-FROM node:20-alpine
+FROM tsmarsh/gridql:3.3.0
 
-WORKDIR /app
-
-RUN mkdir -p config
-RUN mkdir -p views
-
-VOLUME config/environment
-
-COPY package.json ./
-
-# Install dependencies
-RUN yarn install
-
-# Copy the rest of the application code to the working directory
-COPY config/*.conf ./config/
-COPY config/graph ./config/graph
-COPY config/json ./config/json
-COPY views ./views
-COPY index.js ./
-
-# Expose the port that the application listens on
-EXPOSE 3000
-
-# Start the application
-CMD ["npm", "start"]
+COPY config  /app/config

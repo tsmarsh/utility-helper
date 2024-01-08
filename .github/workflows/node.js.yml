@@ -32,6 +32,9 @@ jobs:
 
   build-and-push:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
     needs: build
 
     steps:
@@ -58,3 +61,15 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USER }}/utilityapi:${{ github.run_id }}
 
+      - name: Update Terraform Configuration
+        run: |
+          sed -i "s|${{ secrets.DOCKERHUB_USER }}/utilityapi:.*|${{ secrets.DOCKERHUB_USER }}/utilityapi:${{ github.run_id }}\"|" main.tf
+        working-directory: ./iac/environments/dev
+
+      - name: Commit Terraform Changes
+        run: |
+          git config --global user.name 'UtilityHelper Docker Build'
+          git config --global user.email 'uh.build@tailoredshapes.com'
+          git add ./iac/environments/dev/main.tf
+          git commit -m "Update Docker image tag in Terraform to ${{ github.run_id }}"
+          git push

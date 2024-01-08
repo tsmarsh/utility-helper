@@ -2,19 +2,22 @@
   "name": "bounded_contexts",
   "version": "1.0.0",
   "description": "primary service",
-  "main": "index.js",
+  "main": "../../../gridql/packages/gridql/index.js",
   "author": "Tom Marsh",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node index.js",
-    "test": "nyc mocha --exit"
+    "start": "node ../../../gridql/packages/gridql/index.js",
+    "test": "nyc mocha --exit && nyc cucumber-js",
+    "test:mocha": "nyc mocha --exit",
+    "test:cucumber": "nyc cucumber-js"
   },
   "dependencies": {
-    "@gridql/server": "^2.3.6"
+    "@gridql/server": "^3.3.0"
   },
   "devDependencies": {
-    "@gridql/payload-generator": "^2.3.2",
+    "@cucumber/cucumber": "^10.1.0",
+    "@gridql/payload-generator": "^3.2.0",
     "mocha": "^10.2.0",
     "mongodb-memory-server": "^8.13.0",
     "nyc": "^15.1.0",
