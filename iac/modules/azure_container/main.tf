@@ -17,14 +17,14 @@ variable "memory" {
 }
 
 resource "azurerm_container_group" "ava" {
-  name                = "ava-containergroup"
+  name                = "uh-container-group"
   location            = var.location
   resource_group_name = var.resource_group
   os_type             = "Linux"
 
   container {
-    name   = "telegram"
-    image  = "tsmarsh/ava-telegram:0.0.2"
+    name   = "bounded-contexts"
+    image  = var.image
     cpu    = "0.5"
     memory = "1.5"
 
@@ -39,7 +39,7 @@ resource "azurerm_container_group" "ava" {
   }
 
   ip_address_type = "Public"
-  dns_name_label  = "ava-telegram"
+  dns_name_label  = "ug-bounded-contexts"
 }
 
 resource "azurerm_network_security_rule" "ava" {

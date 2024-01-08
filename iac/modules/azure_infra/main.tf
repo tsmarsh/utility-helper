@@ -1,5 +1,5 @@
 variable "name" {
-  default = "ava-resources"
+  default = "utility-resources"
 }
 
 variable "location" {
@@ -12,7 +12,7 @@ resource "azurerm_resource_group" "ava" {
 }
 
 resource "azurerm_network_security_group" "ava" {
-  name                = "ava-nsg"
+  name                = "uh-nsg"
   location            = azurerm_resource_group.ava.location
   resource_group_name = azurerm_resource_group.ava.name
 }

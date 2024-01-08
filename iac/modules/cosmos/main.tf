@@ -11,7 +11,7 @@ variable "failover_priority" {
 }
 
 resource "azurerm_cosmosdb_account" "ava" {
-  name                = "ava-cosmosdb-account"
+  name                = "uh-cosmosdb-account"
   location            = var.location
   resource_group_name = var.resource_group
   offer_type          = "Standard"
