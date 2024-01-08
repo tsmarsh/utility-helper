@@ -10,7 +10,7 @@ variable "failover_priority" {
   default = 0
 }
 
-resource "azurerm_cosmosdb_account" "ava" {
+resource "azurerm_cosmosdb_account" "utility" {
   name                = "uh-cosmosdb-account"
   location            = var.location
   resource_group_name = var.resource_group
@@ -32,5 +32,5 @@ resource "azurerm_cosmosdb_account" "ava" {
 }
 
 output "connection_string" {
-  value = azurerm_cosmosdb_account.ava.connection_strings[0]
+  value = azurerm_cosmosdb_account.utility.connection_strings[0]
 }

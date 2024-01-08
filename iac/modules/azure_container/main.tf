@@ -16,7 +16,7 @@ variable "memory" {
   default = "1.5"
 }
 
-resource "azurerm_container_group" "ava" {
+resource "azurerm_container_group" "utility" {
   name                = "uh-container-group"
   location            = var.location
   resource_group_name = var.resource_group
@@ -39,10 +39,10 @@ resource "azurerm_container_group" "ava" {
   }
 
   ip_address_type = "Public"
-  dns_name_label  = "ug-bounded-contexts"
+  dns_name_label  = "uh-bounded-contexts"
 }
 
-resource "azurerm_network_security_rule" "ava" {
+resource "azurerm_network_security_rule" "utility" {
   name                        = "HTTP"
   priority                    = 100
   direction                   = "Inbound"

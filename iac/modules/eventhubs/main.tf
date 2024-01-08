@@ -18,8 +18,8 @@ variable "capacity" {
   default = 1
 }
 
-resource "azurerm_eventhub_namespace" "ava" {
-  name                = "ava-eventhub-ns"
+resource "azurerm_eventhub_namespace" "utility" {
+  name                = "uh-eventhub-ns"
   location            = var.location
   resource_group_name = var.resource_group
   sku                 = var.sku
@@ -28,9 +28,9 @@ resource "azurerm_eventhub_namespace" "ava" {
   # kafka_enabled       = true
 }
 
-resource "azurerm_eventhub" "ava" {
-  name                = "ava-eventhub"
-  namespace_name      = azurerm_eventhub_namespace.ava.name
+resource "azurerm_eventhub" "utility" {
+  name                = "uh-eventhub"
+  namespace_name      = azurerm_eventhub_namespace.utility.name
   resource_group_name = var.resource_group
   partition_count     = var.partition_count
   message_retention   = var.message_retention
@@ -38,5 +38,5 @@ resource "azurerm_eventhub" "ava" {
 }
 
 output "connection_string" {
-  value = "${azurerm_eventhub_namespace.ava.name}.servicebus.windows.net:9093"
+  value = "${azurerm_eventhub_namespace.utility.name}.servicebus.windows.net:9093"
 }
